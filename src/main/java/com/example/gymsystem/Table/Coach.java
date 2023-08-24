@@ -21,25 +21,27 @@ public class Coach {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @NotEmpty
+    @Column(columnDefinition = "varchar(20) not null")
     private String name;
-    @NotNull
+
+    @NotEmpty
+    @Column(unique=true, columnDefinition = "varchar(10) not null")
     private String numberPhone;
+
     @Email
+    @NotEmpty
+    @Column(unique=true)
     private String email;
-    private String specialty;
+
 
     @ManyToOne
     @JoinColumn(name = "manager_id",referencedColumnName = "id")
     @JsonIgnore
     private Manager manager;
 
-   /* @OneToOne
-    @MapsId
-    @JsonIgnore
-    private Subscription subscription;
-*/
-
-
+    @OneToMany(mappedBy = "coach")
+    private Set<Subscription> subscriptions ;
 
 }

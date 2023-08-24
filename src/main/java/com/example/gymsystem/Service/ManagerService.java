@@ -46,6 +46,5 @@ public class  ManagerService {
             throw new ApiException("Manager not found");
         }
         managerRepostory.delete(manager);
-
     }
 }

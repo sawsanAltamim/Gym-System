@@ -22,17 +22,20 @@ public class Manager {
     private Integer id;
 
     @NotEmpty
-    @Column(columnDefinition = "varchar(10) not null")
+    @Column(columnDefinition = "varchar(20) not null")
     private String name;
 
     @NotEmpty
     @Email
+    @Column(unique=true)
     private String email;
 
     @NotEmpty
+    @Column(unique=true, columnDefinition = "varchar(10) not null")
     private String number;
 
     @Pattern(regexp = "^[A-Za-z\\s]{1,}[0-9\\s]{1,}", message = "Please enter a valid password")
+    @NotEmpty
     private String password;
 
     @NotNull

@@ -3,6 +3,7 @@ package com.example.gymsystem.Controller;
 import com.example.gymsystem.Api.ApiResponse;
 import com.example.gymsystem.Service.CoachService;
 import com.example.gymsystem.Table.Coach;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +20,15 @@ public class CoachController {
     public ResponseEntity getAllCoach(){
         return ResponseEntity.status(200).body(coachService.getAllCoach());
     }
-    @PostMapping("/add")
-    public ResponseEntity addCoach(@RequestBody Coach coach){
-        coachService.addCoach(coach);
-        return ResponseEntity.status(200).body("Add Coach");
+
+    @PostMapping("/{manager_id}/add_coach")
+    public ResponseEntity addCoachToManager(@PathVariable Integer manager_id, @RequestBody @Valid Coach coach) {
+        coachService.addCoachToManager(manager_id, coach);
+        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Coach added to manager successfully"));
     }
+
     @PutMapping("/update/{id}")
-    public ResponseEntity updateCoach(@RequestBody Coach coach, @PathVariable Integer id){
+    public ResponseEntity updateCoach(@RequestBody @Valid Coach coach, @PathVariable Integer id){
         coachService.updateCoach(id,coach);
         return ResponseEntity.status(200).body("Update Coach");
     }

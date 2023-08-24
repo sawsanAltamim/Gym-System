@@ -3,6 +3,7 @@ package com.example.gymsystem.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
@@ -23,10 +24,17 @@ public class Subscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(columnDefinition = "varchar(20)  check(Packages='Mass' or Packages='Golden' or Packages='Silver')")
     private String packages;
   //  @Column(columnDefinition = "varchar(20)  check(Packages='Swimming' or Packages='iron' or Packages='fitness')")
+
+    @NotEmpty
+    @Column(columnDefinition = "varchar(30) not null")
     private String gymType;
+
+    @NotNull
+    @PositiveOrZero
     private Double price;
 
     @NotNull
@@ -44,5 +52,9 @@ public class Subscription {
     @OneToMany(mappedBy = "subscription")
     private Set<Trainee> traineeSet;
 
+    @ManyToOne
+    @JoinColumn(name = "coach_id",referencedColumnName = "id")
+    @JsonIgnore
+    private Coach coach;
 
 }
