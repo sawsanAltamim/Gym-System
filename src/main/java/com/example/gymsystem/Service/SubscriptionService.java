@@ -39,7 +39,7 @@ public class SubscriptionService {
         }
         subscription1.setPrice(subscription1.getPrice());
         subscription1.setPackages(subscription.getPackages());
-        subscription1.setGymType(subscription.getGymType());
+        subscription1.setFeatures(subscription.getFeatures());
         subscription1.setDateStart(subscription.getDateStart());
         subscription1.setDateEnd(subscription.getDateEnd());
         subscriptionRepository.save(subscription1);
@@ -149,7 +149,7 @@ public class SubscriptionService {
 
         trainee.setSubscription(subscription);
         trainee.setState("Not_subscribed");
-        traineeRepository.save(trainee);
+        traineeRepository.delete(trainee);
     }
 
     public List<Subscription> SearchPackages(String packages){

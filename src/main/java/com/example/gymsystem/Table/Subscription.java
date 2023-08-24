@@ -31,7 +31,7 @@ public class Subscription {
 
     @NotEmpty
     @Column(columnDefinition = "varchar(30) not null")
-    private String gymType;
+    private String features;
 
     @NotNull
     @PositiveOrZero

@@ -80,8 +80,8 @@ public class TraineeService {
         traineeRepository.save(trainee);
     }
 
-    public String getTraineePackage(Integer traineeId) {
-        Trainee trainee = traineeRepository.findTraineeById(traineeId);
+    public String getTraineePackage(Integer trainee_id) {
+        Trainee trainee = traineeRepository.findTraineeById(trainee_id);
         if (trainee == null) {
             throw new ApiException("Trainee not found");
         }

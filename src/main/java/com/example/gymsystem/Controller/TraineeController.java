@@ -35,9 +35,9 @@ public class TraineeController {
         traineeService.deleteTrainee(id);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Delete Trainee"));
     }
-    @GetMapping("/{manager_id}/package")
-    public ResponseEntity getTraineePackage(@PathVariable Integer manager_id) {
-        String packageName = traineeService.getTraineePackage(manager_id);
+    @GetMapping("/{trainee_id}/package")
+    public ResponseEntity getTraineePackage(@PathVariable Integer trainee_id) {
+        String packageName = traineeService.getTraineePackage(trainee_id);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Trainee's package: " + packageName));
     }
     @GetMapping("/check")
